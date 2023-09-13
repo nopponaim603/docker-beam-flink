@@ -18,11 +18,11 @@
 
 FROM flink
 
-RUN curl -L https://github.com/ecesena/beam-starter/releases/download/v0.1/beam-starter-0.1.jar > /root/downloads/beam-starter-0.1.jar
+#RUN curl -L https://github.com/ecesena/beam-starter/releases/download/v0.1/beam-starter-0.1.jar > /root/downloads/beam-starter-0.1.jar
 
 RUN curl http://www.gutenberg.org/cache/epub/1128/pg1128.txt > /tmp/kinglear.txt
 
-ADD config-flink-load-jar.sh /usr/local/flink/bin/
+ADD ./beam-flink/config-flink-load-jar.sh /usr/local/flink/bin/
 RUN chmod +x /usr/local/flink/bin/config-flink-load-jar.sh
 
 #TODO load jar at image level (Flink doesn't allow this yet)

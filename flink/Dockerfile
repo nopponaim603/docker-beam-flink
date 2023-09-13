@@ -19,14 +19,15 @@
 FROM base
 
 #add passless key to ssh
-RUN ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
-RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/*
+#RUN ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
+#RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/*
 
 ##Flink 1.0.3 Installation
 ###Download:
 RUN mkdir ~/downloads && cd ~/downloads && \
-    wget -q -O - http://apache.mirrors.pair.com/flink/flink-1.0.3/flink-1.0.3-bin-hadoop26-scala_2.10.tgz | tar -zxvf - -C /usr/local/
-RUN cd /usr/local && ln -s ./flink-1.0.3 flink
+    wget -q -O - http://apache.mirrors.pair.com/flink/flink-1.16.2/flink-1.16.2-bin-scala_2.12.tgz | tar -zxvf - -C /usr/local/
+    #wget -q -O - http://apache.mirrors.pair.com/flink/flink-1.0.3/flink-1.0.3-bin-hadoop26-scala_2.10.tgz | tar -zxvf - -C /usr/local/
+RUN cd /usr/local && ln -s ./flink-1.16.2 flink
 
 ENV FLINK_HOME /usr/local/flink
 ENV PATH $PATH:$FLINK_HOME/bin

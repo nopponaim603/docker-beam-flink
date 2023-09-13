@@ -15,7 +15,7 @@
 #  See the License for the specific language governing permissions and
 # limitations under the License.
 ################################################################################
-
+#trusty
 FROM ubuntu:trusty
 
 #requirements
@@ -26,7 +26,9 @@ RUN mkdir /var/run/sshd
 
 #install Java 7 Oracle JDK
 RUN mkdir -p /usr/java/default && \
-    curl -Ls 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz' -H 'Cookie: oraclelicense=accept-securebackup-cookie' | \
+
+    curl -Ls 'https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.tar.gz' -H 'Cookie: oraclelicense=accept-securebackup-cookie' | \
+    #curl -Ls 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz' -H 'Cookie: oraclelicense=accept-securebackup-cookie' | \
     tar --strip-components=1 -xz -C /usr/java/default/
 ENV JAVA_HOME /usr/java/default/
 
@@ -35,10 +37,10 @@ ENV JAVA_HOME /usr/java/default/
 #ENV JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
 
 
-RUN echo 'root:secret' | chpasswd
+#RUN echo 'root:secret' | chpasswd
 
 #SSH as root... probably needs to be revised for security!
-RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+#RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 EXPOSE 22
 
