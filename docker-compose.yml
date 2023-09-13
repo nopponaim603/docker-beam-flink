@@ -20,6 +20,8 @@ services:
 
     jobmanager:
         image: dataradiant/beam-flink
+        #build:
+        #    dockerfile: beam-flink/Dockerfile
         ports:
             - "48080:8080"
             - "48081:8081"
@@ -30,6 +32,8 @@ services:
         command: /usr/local/flink/bin/config-flink-load-jar.sh jobmanager
     taskmanager:
         image: dataradiant/beam-flink
+        #build:
+        #    dockerfile: beam-flink/Dockerfile
         ports:
             - "22"
         expose:
